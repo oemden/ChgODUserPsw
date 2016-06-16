@@ -31,6 +31,7 @@ send_emailuser_Object="Please find your New Password "
 send_emailreport_Object="New Password Notification"
 
 ## Network Home Directories Specific
+## WARNING : Both variables are needed to set/change HomeDirectories.
 Server_hostname="server.$emaildomain" # FQDN of the Home Directory Hosting Server - example : file.int.example.com
 Net_HomeDir="/Volumes/datas/Users" # Absolute path of Home Directories on the Hosting HomeDir Server
 
