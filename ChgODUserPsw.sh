@@ -1,18 +1,18 @@
 #!/bin/bash
 ## Change LDAP User's Password from csv
-## V7.3 - oem @ oemden.com 
-
+## oem at oemden dot com 
 ## With diradmin Hardcoded MDP !!!! WARNING SECURITY RISKS.
 
 ###################################################
 ## What we need :
-## 1 List of Users
-## 2 Diradmin credentials (hardcoded below)
+## 1 List of Users ( ! SECURITY RISKS ! )
+## 2 Diradmin credentials ( Hardcoded below ! SECURITY RISKS ! )
+## v0.1 - 20150415
 ###################################################
 
 ###################################################
 ################# EDIT BELOW START ################
-Version="7.2"
+Version="7.3"
 ## OpenDirectory Credentials !!!! WARNING SECURITY RISKS.
 diradminName="diradmin" # Open Directory admin Short Name, diradmin by default - Hardcoded be carefull
 diradminPSW='P@ssw0rd' # Open Directory admin Password - Hardcoded be carefull
@@ -36,7 +36,7 @@ Server_hostname="server.$emaildomain" # FQDN of the Home Directory Hosting Serve
 Net_HomeDir="/Volumes/datas/Users" # Absolute path of Home Directories on the Hosting HomeDir Server
 
 ## Switches
-Change_Password=0 # Set to 0 if you don't want home directories
+Change_Password=1 # Set to 0 if you don't want home directories
 Create_NetworkHomeDir=0 # Set to 0 if you don't want home directories
 SendEmail=0 # Set to 0 if you don't want to send the password by email to the user
 SendEmailReport=0 # Set to 0 if you don't want to send a report by email to you.
@@ -117,7 +117,7 @@ function mini_Help {
 	printf "emaildomain: Your email domain\n  - like example.com\n	This script will append this domain to users shortname found in the csv\n	See below the switches to send password by email\n  	If your user's emails is not set then shortname@example.com will be set\n		see below for the switches\n\n"
 	printf "emailreport: If you want to send email to you\n put Your (admin) email like admin@example.com\n\n"
 	printf "## Network Home Directories Specific ##\n"
-	printf "Server_hostname: FQDN of the Hosting Home Directory Server\n	Not necessarily your OD server !\n either server.int.\$emaildomain\n or server.\$emaildomain\n for example with \$emaildomain=$emaildomain setup above\n would be server.int.$emaildomain\n\n" 
+	printf "Server_hostname: FQDN of the Hosting Home Directory Server\n	Not necessarily your OD server !\n either server.hq.\$emaildomain\n or server.\$emaildomain\n for example with \$emaildomain=$emaildomain setup above\n would be server.hq.$emaildomain\n\n" 
 	printf "Net_HomeDir:\n  Absolute path of Network Home Directories on the Hosting HomeDir Server\n  should be something like \"/Volumes/DATAS/Users\"\n\n"
 	printf "## Switches ##\n"
 	printf "Create_NetworkHomeDir: 0 or 1 \n  - Set to 1\n  - if you DO want home directories to be set\n  - Set to 0\n  - if you DON'T want home directories to be Set\n\n"
@@ -208,7 +208,7 @@ mailx -s "$send_emailuser_Object" "$emailuser" <<EOF
 
  Dear $User,
  
- Your New password is : 
+ Your New Password [.....] is : 
   
 	$Psw
  
